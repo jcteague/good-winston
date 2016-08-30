@@ -22,16 +22,17 @@ var winston = require('winston');
 server.register({
   register: require('good'),
   options: {
-    winston: {
-      module: 'good-winston',
-      args:[winston, {
-         error_level: 'error'
-        ,ops_level: 'debug'
-        ,request_level:'debug'
-        ,response_level:'info'
-        ,other_level: 'info'
+    reporters:{
+      winston: [{
+        module: 'good-winston',
+        args:[winston, {
+           error_level: 'error'
+          ,ops_level: 'debug'
+          ,request_level:'debug'
+          ,response_level:'info'
+          ,other_level: 'info'
+        }]
       }]
-    }
 }, function(err) {
   if (err) {
     return server.log(['error'], 'good load error: ' + err);
